@@ -5,12 +5,6 @@ use App\Http\metier\Commercial;
 
 class CommercialController extends Controller {
 
-
-    public function getLogin(){
-        $erreur = "";
-        return view ('connexion', compact('erreur'));
-    }
-
     public function signIn(){
         $login = Request::input('login');
         $pwd = Request::input('pwd');

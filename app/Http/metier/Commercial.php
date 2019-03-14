@@ -22,6 +22,10 @@ class Commercial extends Model{
         'type_visiteur',
     ];
 
+    public function __construct()
+    {
+    }
+
     public function login($login, $pwd){
         $connected = false;
         $visiteur = DB::table('visiteur')
