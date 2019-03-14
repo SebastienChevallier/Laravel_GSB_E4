@@ -8,6 +8,7 @@ Route::get('/', function () {
 Route::get('/getLogin', function () {
     return view('connexion');
 });
+
 Route::post('/login', 'CommercialController@login');
 Route::get('/logout', 'CommercialController@logout');
 
