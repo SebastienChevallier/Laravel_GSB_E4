@@ -5,7 +5,9 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/getLogin', 'CommercialController@getLogin');
+Route::get('/getLogin', function () {
+    return view('connexion');
+});
 Route::post('/login', 'CommercialController@login');
 Route::get('/logout', 'CommercialController@logout');
 

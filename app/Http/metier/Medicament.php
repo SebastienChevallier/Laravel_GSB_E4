@@ -10,7 +10,7 @@ namespace App\Http\metier;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 
-class Medicaments extends model
+class Medicament extends model
 {
     protected $table = 'medicament';
     public $timestamps = false;

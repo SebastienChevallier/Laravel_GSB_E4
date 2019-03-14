@@ -7,7 +7,7 @@
  */
 
 namespace App\Http\Controllers;
-use App\Http\metier\Medicaments;
+use App\Http\metier\Medicament;
 use Exception;
 use Request;
 use Illuminate\Support\Facades\Session;
@@ -18,7 +18,7 @@ class MedicamentController extends Controller
         try{
             $erreur = Session::get('erreur');
             Session::forget('erreur');
-            $unMedicament = new Medicaments();
+            $unMedicament = new Medicament();
             $mesMedicaments = $unMedicament->getMedicaments();
             return view('listerMedicament', compact('mesMedicaments', 'erreur'));
         }catch (MonException $e){

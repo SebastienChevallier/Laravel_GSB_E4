@@ -9,7 +9,7 @@
 namespace App\Http\metier;
 
 
-class Interactions extends model
+class Interaction extends model
 {
 
 }
