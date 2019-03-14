@@ -5,7 +5,7 @@ use App\Http\metier\Commercial;
 
 class CommercialController extends Controller {
 
-    public function signIn(){
+    public function login(){
         $login = Request::input('login');
         $pwd = Request::input('pwd');
         $unCommercial = new Commercial();
@@ -19,9 +19,9 @@ class CommercialController extends Controller {
         }
     }
 
-    public function signOut(){
-        $unVisiteur =new Visiteur();
-        $unVisiteur->logout();
+    public function Logout(){
+        $unCommercial =new Commercial();
+        $unCommercial->logout();
         return view('home');
     }
 }
