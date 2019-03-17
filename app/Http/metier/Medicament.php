@@ -33,9 +33,25 @@ class Medicament extends model
         $lesMedicaments = DB::table('medicament')
             ->Select()
             ->join('famille', 'medicament.id_famille', '=', 'famille.id_famille')
-            ->join('constituer', 'medicament.id_medicament', '=', 'constituer.id_famille')
-            ->join('composant', 'constituer.id_composant', '=', 'composant.id_composant')
             ->get();
         return $lesMedicaments;
+    }
+
+    public function deleteArticle($id_medicament)
+    {
+        try {
+            DB::table('medicament')->where('id_medicament', '=', $id_medicament)->delete();
+        } catch (QueryException $e) {
+            throw new MonException($e->getMessage(), 5);
+        }
+    }
+
+    public function updateArticle($DESCART, $PRIXART, $PRIXLIVRAISON, $QTESTOCK) {
+        try {
+            DB::table('ARTICLE')->where('NUMART', '=', $NUMART)
+                ->update(['DESCART' => $DESCART, 'PRIXART' => $PRIXART,'PRIXLIVRAISON' => $PRIXLIVRAISON,'QTESTOCK' => $QTESTOCK]);
+        } catch (QueryException $e) {
+            throw new MonException($e->getMessage(), 5);
+        }
     }
 }
