@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-    <div class="container">
+    <div class="pagemedoc">
         <div class="col-md-5">
             <div class="blanc">
                 <h1>Liste des medicaments</h1>
@@ -15,12 +15,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="table-active">
-                        <th scope="row">Active</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
+
+                            <tr class="table-active">
+                                <th scope="row"></th>
+                                <td>Column content</td>
+                                <td>Column content</td>
+                                <td>Column content</td>
+                            </tr>
 
                     </tbody>
                 </table>

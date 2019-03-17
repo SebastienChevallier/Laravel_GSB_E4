@@ -32,6 +32,9 @@ class Medicament extends model
     public function getMedicaments(){
         $lesMedicaments = DB::table('medicament')
             ->Select()
+            ->join('famille', 'medicament.id_famille', '=', 'famille.id_famille')
+            ->join('constituer', 'medicament.id_medicament', '=', 'constituer.id_famille')
+            ->join('composant', 'constituer.id_composant', '=', 'composant.id_composant')
             ->get();
         return $lesMedicaments;
     }
