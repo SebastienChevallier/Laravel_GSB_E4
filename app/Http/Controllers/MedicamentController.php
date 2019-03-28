@@ -19,6 +19,23 @@ class MedicamentController extends Controller
             $erreur = Session::get('erreur');
             Session::forget('erreur');
             $unMedicament = new Medicament();
+            $title = "Liste des medicaments";
+            $mesMedicaments = $unMedicament->getMedicaments();
+            return view('listerMedicament', compact('mesMedicaments', 'erreur', 'title'));
+        }catch (MonException $e){
+            $monErreur = $e->getMessage();
+            return view('error', compact('monErreur'));
+        }catch (Exception $e){
+            $monErreur = $e->getMessage();
+            return view('error', compact('monErreur'));
+        }
+    }
+
+    public function getUnMedicaments($id_medicament){
+        try{
+            $erreur = Session::get('erreur');
+            Session::forget('erreur');
+            $unMedicament = new Medicament();
             $mesMedicaments = $unMedicament->getMedicaments();
             return view('listerMedicament', compact('mesMedicaments', 'erreur'));
         }catch (MonException $e){
