@@ -32,7 +32,7 @@
             </li>
             @if (Session::get('id') > 0)
             <li class="nav-item">
-                <a class="nav-link" href="#" style="font-size: 25px;">Ajouter un interaction |</a>
+                <a class="nav-link" href="{{ url('/ajouterInteraction') }}" style="font-size: 25px;">Ajouter un interaction |</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/getListeMedicaments') }}" style="font-size: 25px;">Lister les médicaments |</a>

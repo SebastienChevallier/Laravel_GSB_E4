@@ -1,29 +1,22 @@
 @extends('layouts.master')
 @section('content')
-    <?php var_dump($mesInteractions);?>
-    <div class="container" style="width:100%;">
-        <div class="col-md-5">
-            <div class="blanc">
-                <h1>Liste des medicaments</h1>
+    <center><h1 class="title">{{$title}}</h1></center>
+    <hr/>
+    <div class="row">
+        @if(isset($uneInteraction))
+            <div class="well col-md-12">
+                <div class="form-horizontal">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Nom : </label>
+                            <div class="col-md-6  col-md-3">
+                                <input type="text" name="login" class="form-control" value="{{$uneInteraction->nom_commercial}}" readonly>
+                            </div>
+                        </div>
+
+                    <a class="btn btn-default btn-primary"   href="{{ url()->previous() }}">
+                        <span class="glyphicon glyphicon-home"></span> Retour </a></center>
             </div>
-            <table class="table table-hover" style="width:100%;font-size: 15px">
-                <thead>
-                <tr>
-                    <th scope="col">Medicament</th>
-                    <th scope="col">Interactions</th>
-                    <th scope="col">Supprimer</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($mesInteractions as $uneInteraction)
-                    <tr>
-                        <th scope="row">{{$uneInteraction->nom_commercial}}</th>
-                        <td><div class="btn btn-outline-success" onclick="javascript: window.location ='{{ url('/formInteraction')}}/{{$unMedicament->id_medicament}}';"><i class="fas fa-plus-circle"></i> modifier</div></td>
-                        <td><div class="btn btn-outline-danger" onclick="javascript: window.location ='{{ url('/supprMedic')}}/{{$unMedicament->id_medicament}}';"><i class="far fa-trash-alt"></i> supprimer</div></td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-        </div>
     </div>
+    @endif
 @stop

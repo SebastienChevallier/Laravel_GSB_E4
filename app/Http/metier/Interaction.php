@@ -12,40 +12,56 @@ use DB;
 
 class Interaction extends model
 {
-    protected $table = 'interaction';
+    protected $table = 'interagir';
     public $timestamps = false;
+    private $id_medicament;
     protected $fillable = [
         'id_medicament',
         'med_id_medicament'
     ];
 
-    public function __construct()
+    public function getInteraction($id_medicament)
     {
-    }
-
-    public function getInteractionMedicaments($id_medicament){
-        $lesInteraction = DB::table('interaction')
+        $lesInteractions = DB::table('medicament')
             ->Select()
-            ->join('medicament', 'medicament.id_medicament', '=', $id_medicament)
+            ->join('interagir', 'medicament.id_medicament', '=', 'interagir.med_id_medicament')
+            ->where('interagir.id_medicament', '=', $id_medicament)
             ->get();
-        return $lesInteraction;
+        return $lesInteractions;
+
     }
 
-    public function deleteInteraction($med_id_medicament)
+    public function addInteraction($id_medicament, $med_id_medicament)
     {
         try {
-            DB::table('interaction')->where('med_id_medicament', '=', $med_id_medicament)->delete();
+            DB::table('INTERAGIR')->insert(
+                [
+                    'id_medicament'=>$id_medicament,
+                    'med_id_medicament'=>$med_id_medicament]
+
+            );
         } catch (QueryException $e) {
-            throw new MonException($e->getMessage(), 5);
+            $e->getMessage();
         }
     }
 
-    public function updateMedicament($id_medicament, $med_id_medicament) {
+    public function updateInteraction($id_medicament, $med_id_medicament) {
         try {
-            DB::table('medicament')->where('id_medicament', '=', $id_medicament)
+            DB::table('interagir')->where('id_medicament', '=', $id_medicament)
                 ->update(['med_id_medicament' => $med_id_medicament]);
         } catch (QueryException $e) {
-            throw new MonException($e->getMessage(), 5);
+            $erreur =  $e->getMessage();
+        }
+    }
+    public function insertArticle($id_medicament, $med_id_medicament){
+        try {
+            DB::table('interagir')->insert(
+                [
+                    'id_medicament'=>$id_medicament,
+                    'med_id_medicament'=> $med_id_medicament]
+            );
+        } catch (QueryException $e) {
+            $e->getMessage();
         }
     }
 }
