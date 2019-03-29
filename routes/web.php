@@ -19,7 +19,7 @@ Route::get('/getListeMedicaments', 'MedicamentController@getMedicaments');
 Route::get('/getErrors/{retour}', ['as' => '/getErrors', 'uses' => 'ErrorsController@getErreurs']);
 
 //Afficher un Medicament
-Route::get('/formMedicament/{NUMART}','MedicamentController@getUnMedicament');
+Route::get('/formInteraction/{id_medicament}','InteractionController@getInteraction');
 
 //Supprimer un Medicament
 Route::get('/supprimeMedicament/{NUMART}', 'MedicamentController@supprimeMedicament');

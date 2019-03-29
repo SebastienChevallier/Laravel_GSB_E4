@@ -29,4 +29,20 @@ class MedicamentController extends Controller
             return view('error', compact('monErreur'));
         }
     }
+
+    public function getMedicamentsParNom(){
+        try{
+            $erreur = Session::get('erreur');
+            Session::forget('erreur');
+            $unMedicament = new Medicament();
+            $mesMedicaments = $unMedicament->getMedicamentsParNom();
+            return view('listerMedicament', compact('mesMedicaments', 'erreur'));
+        }catch (MonException $e){
+            $monErreur = $e->getMessage();
+            return view('error', compact('monErreur'));
+        }catch (Exception $e){
+            $monErreur = $e->getMessage();
+            return view('error', compact('monErreur'));
+        }
+    }
 }

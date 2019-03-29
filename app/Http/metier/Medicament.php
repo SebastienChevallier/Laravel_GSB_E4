@@ -37,21 +37,29 @@ class Medicament extends model
         return $lesMedicaments;
     }
 
-    public function deleteArticle($id_medicament)
-    {
-        try {
-            DB::table('medicament')->where('id_medicament', '=', $id_medicament)->delete();
-        } catch (QueryException $e) {
-            throw new MonException($e->getMessage(), 5);
-        }
+    public function getMedicamentsParFamille($id_famille){
+        $lesMedicaments = DB::table('medicament')
+            ->Select()
+            ->where('id_famille','=',$id_famille)
+            ->join('famille', 'medicament.id_famille', '=', 'famille.id_famille')
+            ->get();
+        return $lesMedicaments;
     }
 
-    public function updateArticle($DESCART, $PRIXART, $PRIXLIVRAISON, $QTESTOCK) {
-        try {
-            DB::table('ARTICLE')->where('NUMART', '=', $NUMART)
-                ->update(['DESCART' => $DESCART, 'PRIXART' => $PRIXART,'PRIXLIVRAISON' => $PRIXLIVRAISON,'QTESTOCK' => $QTESTOCK]);
-        } catch (QueryException $e) {
-            throw new MonException($e->getMessage(), 5);
-        }
+    public function getMedicamentsParNom($nom_medicament){
+        $lesMedicaments = DB::table('medicament')
+            ->Select()
+            ->where('nom_commercial','=',$nom_medicament)
+            ->join('famille', 'medicament.id_famille', '=', 'famille.id_famille')
+            ->get();
+        return $lesMedicaments;
+    }
+
+    public function getInteractionMedicaments($id_medicament){
+        $lesInteraction = DB::table('interaction')
+            ->Select()
+            ->join('medicament', 'medicament.id_medicament', '=', $id_medicament)
+            ->get();
+        return $lesInteraction;
     }
 }
