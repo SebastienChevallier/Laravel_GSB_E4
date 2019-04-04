@@ -31,6 +31,19 @@ class Interaction extends model
 
     }
 
+    public function getUneInteraction($id_medicament, $med_id_medicament)
+    {
+        $lesInteractions = DB::table('interagir')
+            ->Select()
+            ->join('medicament', 'medicament.id_medicament', '=', 'interagir.med_id_medicament')
+            ->where('interagir.id_medicament', '=', $id_medicament)
+            ->where('interagir.med_id_medicament', '=', $med_id_medicament)
+            ->get();
+        return $lesInteractions;
+
+    }
+
+
     public function addInteraction($id_medicament, $med_id_medicament)
     {
         try {

@@ -32,6 +32,19 @@
                                         <span class="glyphicon glyphicon-home"></span> Retour </a></center>
 
                                 @else
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Nom : </label>
+                                        <div class="col-md-6  col-md-3">
+                                            <input type="text" name="login" class="form-control" value="{{$unMedicament->nom_commercial}}" readonly>
+                                        </div>
+                                    </div>
+
+                                    <select name="medicament2" id="medicament2" class="custom-select">
+                                        <option selected="" disabled="">Selectionner une interaction</option>
+                                        @foreach($mesMedicaments as $unMedicament)
+                                            <option value="{{$unMedicament->id_medicament}}">{{$unMedicament->id_medicament}}-{{$unMedicament->nom_commercial}}</option>
+                                        @endforeach
+                                    </select>
 
                                 @endif
 

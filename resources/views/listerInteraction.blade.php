@@ -20,8 +20,8 @@
                         <tr>
                             <th scope="row">{{$uneInteraction->nom_commercial}}</th>
                             <td>{{$uneInteraction->contre_indication}}</td>
-                            <td><div class="btn btn-outline-success" onclick="javascript: window.location ='{{ url('/modifInteraction')}}/{{$uneInteraction->id_medicament}}/{{$uneInteraction->med_id_medicament}}';"><i class="fas fa-plus-circle"></i> modifier</div></td>
-                            <td><div class="btn btn-outline-danger" onclick="javascript: window.location ='{{ url('/supprInteraction')}}/{{$uneInteraction->id_medicament}}/{{$uneInteraction->med_id_medicament}}';"><i class="far fa-trash-alt"></i> supprimer</div></td>
+                            <td><div class="btn btn-outline-success" onclick="javascript: window.location ='{{ url('/modifierInteraction')}}/{{$uneInteraction->id_medicament}}/{{$uneInteraction->med_id_medicament}}';"><i class="fas fa-plus-circle"></i> modifier</div></td>
+                            <td><div class="btn btn-outline-danger" onclick="javascript: window.location ='{{ url('/supprimeInteraction')}}/{{$uneInteraction->id_medicament}}/{{$uneInteraction->med_id_medicament}}';"><i class="far fa-trash-alt"></i> supprimer</div></td>
                         </tr>
                     @endforeach
                     </tbody>

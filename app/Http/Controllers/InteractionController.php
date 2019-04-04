@@ -96,4 +96,20 @@ class InteractionController extends Controller
             return view('error', compact('erreur'));
         }
     }
+
+    public function updateInteraction($id_medicament, $med_id_medicament) {
+        try {
+            $erreur = "";
+            $unMedic = new Interaction();
+            $monInteraction = $unMedic->getUneInteraction($id_medicament, $med_id_medicament);
+            $title = "Modification d'une Interaction";
+            return view('formArticle', compact('monInteraction', 'title', 'erreur'));
+        } catch (MonException $e) {
+            $monErreur = $e->getMessage();
+            return view('error', compact('monErreur'));
+        } catch (Exception $e) {
+            $monErreur = $e->getMessage();
+            return view('error', compact('monErreur'));
+        }
+    }
 }
