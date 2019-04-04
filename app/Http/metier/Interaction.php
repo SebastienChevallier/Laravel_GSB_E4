@@ -53,7 +53,7 @@ class Interaction extends model
             $erreur =  $e->getMessage();
         }
     }
-    public function insertArticle($id_medicament, $med_id_medicament){
+    public function insertInteraction($id_medicament, $med_id_medicament){
         try {
             DB::table('interagir')->insert(
                 [

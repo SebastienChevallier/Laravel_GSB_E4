@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 use App\Http\metier\Interaction;
 use App\Http\metier\Medicament;
 use Exception;
+use Illuminate\Support\Facades\Input;
 use Request;
 use Illuminate\Support\Facades\Session;
 
@@ -32,12 +33,14 @@ class InteractionController extends Controller
         }
     }
 
-    public function addInteraction() {
+    public function AjoutInteraction() {
         try {
             $erreur = "";
-            $unArticle = new Interaction();
+            $unMedicament = new Medicament();
+            $mesMedicaments = $unMedicament->getMedicaments();
+            $uneInteraction = new Interaction();
             $title = "Ajout d'une interaction";
-            return view('formInteraction', compact('unArticle', 'title', 'erreur'));
+            return view('formInteraction', compact('mesMedicaments', 'uneInteraction', 'title', 'erreur'));
         } catch (MonException $e) {
             $monErreur = $e->getMessage();
             return view('error', compact('monErreur'));
@@ -47,18 +50,39 @@ class InteractionController extends Controller
         }
     }
 
+    public function addInteraction(){
+        try{
+            $id_medicament = Request::input('medicament1');
+            $med_id_medicament = Request::input('medicament2');
+
+
+            $uneInteraction = new Interaction();
+            $uneInteraction->insertInteraction($id_medicament, $med_id_medicament);
+            $mesMedicaments = new Medicament();
+            $mesMedicaments = $mesMedicaments->getMedicaments();
+            $title = 'Liste de tous les medicaments';
+            return view('listerMedicament',compact('title','mesMedicaments'));
+        } catch(MonException $e) {
+            $erreur = $e->getMessage();
+            return view('error', compact('erreur'));
+        } catch(Exception $e) {
+            $erreur = $e->getMessage();
+            return view('error', compact('erreur'));
+        }
+    }
+
     public function validateInteraction() {
         try {
-            $id_medicament = Request::input('id_medicament');
-            $med_id_medicament = Request::input('med_id_medicament');
+            $id_medicament = Request::input('medicament1');
+            $med_id_medicament = Request::input('medicament2');
 
 
-            $unArticle = new Article();
+            $uneInteraction = new Interaction();
             if($id_medicament > 0) {
-                $unArticle->updateInteraction($id_medicament, $med_id_medicament);
+                $uneInteraction->updateInteraction($id_medicament, $med_id_medicament);
             }
             else {
-                $unArticle->insertInteraction($id_medicament, $med_id_medicament);
+                $uneInteraction->insertInteraction($id_medicament, $med_id_medicament);
             }
             $mesMedicament = new Medicament();
             $mesMedicament = $mesMedicament->getMedicaments();

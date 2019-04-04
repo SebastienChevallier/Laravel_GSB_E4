@@ -22,10 +22,13 @@ Route::get('/getErrors/{retour}', ['as' => '/getErrors', 'uses' => 'ErrorsContro
 Route::get('/formMedicament/{id_medicament}','MedicamentController@getUnMedicament');
 
 //Supprimer une interaction
-Route::get('/supprimeMedicament/{id_medicament}/{med_id_medicament}', 'MedicamentController@supprimeMedicament');
+Route::get('/supprimeInteraction', 'MedicamentController@supprimeMedicament');
 
 //Formulaire pour ajouter un Medicament
-Route::get('/ajouterInteraction', 'InteractionController@addInteraction');
+Route::get('/ajouterInteraction', 'InteractionController@AjoutInteraction');
+
+//Ajout de l'interaction
+Route::post('/addInteraction', 'InteractionController@addInteraction');
 
 //Formulaire pour modifier un Medicament
 Route::get('/modifierInteraction/{id_medicament}/{med_id_medicament}', 'InteractionController@updateInteraction');
@@ -34,4 +37,4 @@ Route::get('/modifierInteraction/{id_medicament}/{med_id_medicament}', 'Interact
 Route::get('/listerInteraction/{id_medicament}', 'InteractionController@getInteraction');
 
 //Enregistrer une modification d'un Medicament
-Route::post('/validerInteraction', 'interactionController@validateInteraction');
+Route::post('/validerInteraction/{id_medicament}/{med_id_medicament}', 'interactionController@validateInteraction');
