@@ -98,6 +98,7 @@ class InteractionController extends Controller
     }
 
     public function updateInteraction($id_medicament, $med_id_medicament) {
+        //TEST
         try {
             $erreur = "";
             $unMedic = new Interaction();
