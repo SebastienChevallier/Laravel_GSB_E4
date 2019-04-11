@@ -31,19 +31,7 @@ class Interaction extends model
 
     }
 
-    public function addInteraction($id_medicament, $med_id_medicament)
-    {
-        try {
-            DB::table('INTERAGIR')->insert(
-                [
-                    'id_medicament'=>$id_medicament,
-                    'med_id_medicament'=>$med_id_medicament]
 
-            );
-        } catch (QueryException $e) {
-            $e->getMessage();
-        }
-    }
 
     public function updateInteraction($id_medicament, $med_id_medicament) {
         try {
@@ -53,7 +41,7 @@ class Interaction extends model
             $erreur =  $e->getMessage();
         }
     }
-    public function insertArticle($id_medicament, $med_id_medicament){
+    public function insertInteraction($id_medicament, $med_id_medicament){
         try {
             DB::table('interagir')->insert(
                 [
