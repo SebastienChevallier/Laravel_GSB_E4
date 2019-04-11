@@ -36,7 +36,7 @@ class MedicamentController extends Controller
             $erreur = Session::get('erreur');
             Session::forget('erreur');
             $unMedicament = new Medicament();
-            $mesMedicaments = $unMedicament->getMedicaments();
+            $mesMedicaments = $unMedicament->getUnMedicaments($id_medicament);
             return view('listerMedicament', compact('mesMedicaments', 'erreur'));
         }catch (MonException $e){
             $monErreur = $e->getMessage();
