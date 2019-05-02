@@ -8,7 +8,8 @@
 
 namespace App\Http\metier;
 use Illuminate\Database\Eloquent\Model;
-use DB;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\QueryException;
 
 class Interaction extends model
 {
@@ -58,12 +59,28 @@ class Interaction extends model
         }
     }
 
-    public function updateInteraction($id_medicament, $med_id_medicament) {
+    public function supprInteraction($id_medicament, $med_id_medicament)
+    {
         try {
-            DB::table('interagir')->where('id_medicament', '=', $id_medicament)
-                ->update(['med_id_medicament' => $med_id_medicament]);
+            DB::table('INTERAGIR')
+                ->Select()
+                ->join('medicament', 'medicament.id_medicament', '=', 'interagir.med_id_medicament')
+                ->where('interagir.id_medicament', '=', $id_medicament)
+                ->where('interagir.med_id_medicament', '=', $med_id_medicament)
+                ->delete();
         } catch (QueryException $e) {
-            $erreur =  $e->getMessage();
+            $e->getMessage();
+        }
+    }
+
+    public function updateInteraction($id_medicament, $med_id_medicament, $medid) {
+        try {
+            DB::table('interagir')
+                ->where('id_medicament', '=', $id_medicament)
+                ->where('interagir.med_id_medicament', '=', $medid)
+                ->update(['interagir.med_id_medicament'=>$med_id_medicament]);
+        } catch (QueryException $e) {
+            throw $e;
         }
     }
     public function insertInteraction($id_medicament, $med_id_medicament){

@@ -32,10 +32,16 @@
                                         <span class="glyphicon glyphicon-home"></span> Retour </a></center>
 
                                 @else
+                                    {!! Form::open(['url' => 'validerInteraction']) !!}
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">Nom : </label>
                                         <div class="col-md-6  col-md-3">
-                                            <input type="text" name="login" class="form-control" value="{{$unMedicament->nom_commercial}}" readonly>
+
+                                            <select name="medicament1" id="medicament1" class="custom-select">
+                                                @foreach($monMedicament as $unMedicament)
+                                                    <option selected=""  value="{{$unMedicament->id_medicament}}">{{$unMedicament->id_medicament}}-{{$unMedicament->nom_commercial}}</option>
+                                                @endforeach
+                                            </select>
+                                            <input name="medid" id="medid" type="hidden" value="{{$med_id_medicament}}">
                                         </div>
                                     </div>
 
@@ -45,6 +51,15 @@
                                             <option value="{{$unMedicament->id_medicament}}">{{$unMedicament->id_medicament}}-{{$unMedicament->nom_commercial}}</option>
                                         @endforeach
                                     </select>
+
+                                    <button type="submit" class="btn btn-default btn-success" onclick="javascript: window.location ='{{ url('/validerInteraction')}}';">
+                                        <span class="glyphicon glyphicon-ok"></span>
+                                        Valider l'interaction
+                                    </button>
+
+                                    <a class="btn btn-default btn-primary"   href="{{ url()->previous() }}">
+                                        <span class="glyphicon glyphicon-home"></span> Retour </a></center>
+
 
                                 @endif
 

@@ -71,23 +71,38 @@ class InteractionController extends Controller
         }
     }
 
+    public function supprInteraction($id_medicament, $med_id_medicament){
+        try{
+
+            $uneInteraction = new Interaction();
+            $uneInteraction->supprInteraction($id_medicament, $med_id_medicament);
+            $mesMedicaments = new Medicament();
+            $mesMedicaments = $mesMedicaments->getMedicaments();
+            $title = 'Liste de tous les medicaments';
+            return view('listerMedicament',compact('title','mesMedicaments'));
+        } catch(MonException $e) {
+            $erreur = $e->getMessage();
+            return view('error', compact('erreur'));
+        } catch(Exception $e) {
+            $erreur = $e->getMessage();
+            return view('error', compact('erreur'));
+        }
+    }
+
     public function validateInteraction() {
         try {
             $id_medicament = Request::input('medicament1');
             $med_id_medicament = Request::input('medicament2');
+            $medid = Request::input('medid');
 
 
             $uneInteraction = new Interaction();
-            if($id_medicament > 0) {
-                $uneInteraction->updateInteraction($id_medicament, $med_id_medicament);
-            }
-            else {
-                $uneInteraction->insertInteraction($id_medicament, $med_id_medicament);
-            }
+            $uneInteraction->updateInteraction($id_medicament, $med_id_medicament, $medid);
+
             $mesMedicament = new Medicament();
-            $mesMedicament = $mesMedicament->getMedicaments();
+            $mesMedicaments = $mesMedicament->getMedicaments();
             $title = 'Liste de tous les medicaments';
-            return view('listerMedicament',compact('title','mesMedicament'));
+            return view('listerMedicament',compact('title','mesMedicaments'));
         } catch(MonException $e) {
             $erreur = $e->getMessage();
             return view('error', compact('erreur'));
@@ -103,8 +118,14 @@ class InteractionController extends Controller
             $erreur = "";
             $unMedic = new Interaction();
             $monInteraction = $unMedic->getUneInteraction($id_medicament, $med_id_medicament);
+
+            $mesMedicaments = new medicament();
+            $mesMedicaments = $mesMedicaments->getMedicaments();
+
+            $monMedicament = new medicament();
+            $monMedicament = $monMedicament->getMedicamentsParId($id_medicament);
             $title = "Modification d'une Interaction";
-            return view('formArticle', compact('monInteraction', 'title', 'erreur'));
+            return view('formInteraction', compact('monInteraction','monMedicament', 'mesMedicaments',"med_id_medicament",'title', 'erreur'));
         } catch (MonException $e) {
             $monErreur = $e->getMessage();
             return view('error', compact('monErreur'));

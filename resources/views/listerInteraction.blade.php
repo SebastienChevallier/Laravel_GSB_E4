@@ -5,6 +5,7 @@
             <div class="blanc">
                 <h1>{{$title}}</h1>
             </div>
+
             @if(isset($lesInteractions) && $lesInteractions->count() !==  0)
                 <table class="table table-hover" style="width:100%;font-size: 15px">
                     <thead>
