@@ -29,6 +29,7 @@ class Medicament extends model
     {
     }
 
+
     public function getMedicaments(){
         $lesMedicaments = DB::table('medicament')
             ->Select()
@@ -46,11 +47,18 @@ class Medicament extends model
         return $lesMedicaments;
     }
 
-    public function getMedicamentsParNom($nom_medicament){
+    public function getMedicamentsParNom($nom_commerical){
         $lesMedicaments = DB::table('medicament')
             ->Select()
-            ->where('nom_commercial','=',$nom_medicament)
-            ->join('famille', 'medicament.id_famille', '=', 'famille.id_famille')
+            ->where('nom_commercial','=',$nom_commerical)
+            ->get();
+        return $lesMedicaments;
+    }
+
+    public function getMedicamentsParId($id_medicament){
+        $lesMedicaments = DB::table('medicament')
+            ->Select()
+            ->where('id_medicament','=',$id_medicament)
             ->get();
         return $lesMedicaments;
     }
