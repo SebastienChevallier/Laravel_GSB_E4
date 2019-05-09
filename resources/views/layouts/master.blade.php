@@ -28,15 +28,21 @@
     <div class="collapse navbar-collapse" id="navbarColor02">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="{{url('/')}}" style="font-size: 25px;">Menu |<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{{url('/')}}" style="font-size: 25px;">Menu <span class="sr-only">(current)</span></a>
             </li>
             @if (Session::get('id') > 0)
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('/ajouterInteraction') }}" style="font-size: 25px;">Ajouter un interaction |</a>
+                <a class="nav-link" href="{{ url('/ajouterInteraction') }}" style="font-size: 25px;">Ajouter un interaction </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('/getListeMedicaments') }}" style="font-size: 25px;">Lister les médicaments |</a>
+                <a class="nav-link" href="{{ url('/getListeMedicaments') }}" style="font-size: 25px;">Lister les médicaments </a>
             </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/getMedicamentsParNom') }}" style="font-size: 25px;">Recherche par nom </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/getMedicamentsParFamille') }}" style="font-size: 25px;">Recherche par famille</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/logout') }}" style="font-size: 25px;">Deconnexion </a>
                 </li>

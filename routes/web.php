@@ -14,7 +14,13 @@ Route::get('/logout', 'CommercialController@logout');
 
 Route::get('/getListeMedicaments', 'MedicamentController@getMedicaments');
 
+Route::get('/getMedicamentsParFamille','FamilleController@getFamille');
 
+Route::post('/rechercheParFamille','MedicamentController@getMedicamentsParFamille');
+
+Route::get('/getMedicamentsParNom', function(){
+    return view('formMedicNom');
+});
 
 Route::get('/getErrors/{retour}', ['as' => '/getErrors', 'uses' => 'ErrorsController@getErreurs']);
 
