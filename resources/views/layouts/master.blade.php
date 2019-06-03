@@ -37,12 +37,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/getListeMedicaments') }}" style="font-size: 25px;">Lister les médicaments </a>
             </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/getMedicamentsParNom') }}" style="font-size: 25px;">Recherche par nom </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/getMedicamentsParFamille') }}" style="font-size: 25px;">Recherche par famille</a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/logout') }}" style="font-size: 25px;">Deconnexion </a>
                 </li>

@@ -34,13 +34,15 @@ class MedicamentController extends Controller
         }
     }
 
-    public function getUnMedicaments($id_medicament){
+    public function getUnMedicament(){
         try{
+            $id_medicament = Request::get('nom');
             $erreur = Session::get('erreur');
             Session::forget('erreur');
+            $title = 'Resultat';
             $unMedicament = new Medicament();
-            $mesMedicaments = $unMedicament->getUnMedicaments($id_medicament);
-            return view('listerMedicament', compact('mesMedicaments', 'erreur'));
+            $mesMedicaments = $unMedicament->getMedicamentsParId($id_medicament);
+            return view('listerMedicament', compact('mesMedicaments','title', 'erreur'));
         }catch (MonException $e){
             $monErreur = $e->getMessage();
             return view('error', compact('monErreur'));
@@ -50,13 +52,14 @@ class MedicamentController extends Controller
         }
     }
 
-    public function getMedicamentsParNom($nom_commercial){
+    public function getMedicamentsParNom(){
         try{
             $erreur = Session::get('erreur');
             Session::forget('erreur');
             $unMedicament = new Medicament();
-            $mesMedicaments = $unMedicament->getMedicamentsParNom($nom_commercial);
-            return view('listerMedicament', compact('mesMedicaments', 'erreur'));
+            $title = "Liste des medicaments";
+            $mesMedicaments = $unMedicament->getMedicaments();
+            return view('formMedicNom', compact('mesMedicaments', 'erreur', 'title'));
         }catch (MonException $e){
             $monErreur = $e->getMessage();
             return view('error', compact('monErreur'));

@@ -5,6 +5,14 @@
             <div class="blanc">
                 <h1>{{$title}}</h1>
             </div>
+
+            <button type="button" class="btn btn-outline-success">
+                <a class="nav-link" href="{{ url('/getMedicamentsParNom') }}" style="font-size: 25px;color : green;">Recherche par nom </a>
+            </button>
+
+            <button type="button" class="btn btn-outline-success">
+                <a class="nav-link" href="{{ url('/getMedicamentsParFamille') }}" style="font-size: 25px;color : green;">Recherche par familles</a>
+            </button>
                 <table class="table table-hover" style="width:100%;font-size: 15px">
                     <thead>
                     <tr>
