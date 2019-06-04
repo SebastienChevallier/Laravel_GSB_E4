@@ -70,8 +70,9 @@ class MedicamentController extends Controller
         try{
             $erreur = Session::get('erreur');
             Session::forget('erreur');
+            $idFamille = Request::input('famille');
             $unMedicament = new Medicament();
-            $mesMedicaments = $unMedicament->getMedicamentsParNom();
+            $mesMedicaments = $unMedicament->getMedicamentsParFamille($idFamille);
             return view('listerMedicament', compact('mesMedicaments', 'erreur'));
         }catch (MonException $e){
             $monErreur = $e->getMessage();

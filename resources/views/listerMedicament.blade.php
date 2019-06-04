@@ -16,6 +16,7 @@
                         <option selected=""  value="{{$uneFamille->id_famille}}">{{$uneFamille->lib_famille}}</option>
                     @endforeach
                 </select>
+                <div class="btn btn-outline-warning" onclick="javascript: window.location ='{{ url('/rechercheMedicamentFamille')}}';"><i class="fas fa-eye"></i>Rechercher</div>
                 <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
             </form>
                 <table class="table table-hover" style="width:100%;font-size: 15px">

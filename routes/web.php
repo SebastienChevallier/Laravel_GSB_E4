@@ -38,3 +38,8 @@ Route::get('/listerInteraction/{id_medicament}', 'InteractionController@getInter
 
 //Enregistrer une modification d'un Medicament
 Route::post('/validerInteraction', 'interactionController@validateInteraction');
+
+Route::post('/rechercheMedicamentFamille',[
+    'as'=>'postRechercheMedicamentFamille',
+    'uses'=>'MedicamentController@getMedicamentsParFamille'
+]);
