@@ -42,7 +42,6 @@ class Medicament extends model
         $lesMedicaments = DB::table('medicament')
             ->Select()
             ->where('id_famille','=',$id_famille)
-            ->join('famille', 'medicament.id_famille', '=', 'famille.id_famille')
             ->get();
         return $lesMedicaments;
     }
